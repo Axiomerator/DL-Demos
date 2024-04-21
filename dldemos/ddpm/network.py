@@ -2,7 +2,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from dldemos.ddpm.dataset import get_img_shape
+# from dldemos.ddpm.dataset import get_img_shape
+from dataset import get_img_shape
 
 
 class PositionalEncoding(nn.Module):

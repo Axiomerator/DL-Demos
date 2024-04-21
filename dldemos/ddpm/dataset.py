@@ -24,7 +24,7 @@ def download_dataset():
 def get_dataloader(batch_size: int):
     transform = Compose([ToTensor(), Lambda(lambda x: (x - 0.5) * 2)])
     dataset = torchvision.datasets.MNIST(root='./data/mnist',
-                                         transform=transform)
+                                         transform=transform, download=True)
     return DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
 

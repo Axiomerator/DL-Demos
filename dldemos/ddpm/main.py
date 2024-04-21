@@ -7,17 +7,25 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-from dldemos.ddpm.dataset import get_dataloader, get_img_shape
-from dldemos.ddpm.ddpm_simple import DDPM
-from dldemos.ddpm.network import (build_network, convnet_big_cfg,
+# from dldemos.ddpm.dataset import get_dataloader, get_img_shape
+# from dldemos.ddpm.ddpm_simple import DDPM
+# from dldemos.ddpm.network import (build_network, convnet_big_cfg,
+#                                   convnet_medium_cfg, convnet_small_cfg,
+#                                   unet_1_cfg, unet_res_cfg)
+
+from dataset import get_dataloader, get_img_shape
+from ddpm_simple import DDPM
+from network import (build_network, convnet_big_cfg,
                                   convnet_medium_cfg, convnet_small_cfg,
                                   unet_1_cfg, unet_res_cfg)
 
 batch_size = 512
 n_epochs = 100
 
+# ckpt_path_ctrl = 'dldemos/ddpm/model.pth'
+ckpt_path_ctrl = './model.pth'
 
-def train(ddpm: DDPM, net, device='cuda', ckpt_path='dldemos/ddpm/model.pth'):
+def train(ddpm: DDPM, net, device='cuda', ckpt_path=ckpt_path_ctrl):
     print('batch size:', batch_size)
     n_steps = ddpm.n_steps
     dataloader = get_dataloader(batch_size)
@@ -84,7 +92,8 @@ if __name__ == '__main__':
     n_steps = 1000
     config_id = 4
     device = 'cuda'
-    model_path = 'dldemos/ddpm/model_unet_res.pth'
+    # model_path = 'dldemos/ddpm/model_unet_res.pth'
+    model_path = './model_unet_res.pth'
 
     config = configs[config_id]
     net = build_network(config, n_steps)
